@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Starting" parent="Theme.SplashScreen" >
+        <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/weather_app_icon_animated</item>
+    </style>
 
-    <style name="Theme.WeatherApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.WeatherApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>
