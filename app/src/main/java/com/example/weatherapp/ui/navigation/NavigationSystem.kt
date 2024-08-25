@@ -21,7 +21,7 @@ fun NavigationSystem(
         composable<HomeScreenN>{
             val viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
             HomeScreen(
-                viewModel = viewModel
+                hourlyForecastUiState = viewModel.hourlyForecastUiState
             )
         }
     }

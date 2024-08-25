@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel,
+    hourlyForecastUiState: HourlyForecastUiState,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize()
@@ -18,7 +18,26 @@ fun HomeScreen(
         Column(
             modifier = modifier.padding(it)
         ) {
-
+            when (hourlyForecastUiState) {
+                is HourlyForecastUiState.Loading -> HomeScreenLoading()
+                is HourlyForecastUiState.Error -> HomeScreenError()
+                is HourlyForecastUiState.Success -> HomeScreenSuccess()
+            }
         }
     }
+}
+
+@Composable
+fun HomeScreenLoading() {
+
+}
+
+@Composable
+fun HomeScreenError() {
+
+}
+
+@Composable
+fun HomeScreenSuccess() {
+
 }
