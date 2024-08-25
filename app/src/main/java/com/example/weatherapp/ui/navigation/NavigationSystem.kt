@@ -1,5 +1,7 @@
 package com.example.weatherapp.ui.navigation
 
+import android.Manifest
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -13,6 +15,7 @@ import com.example.weatherapp.ui.screens.homeScreen.HomeViewModel
 @Composable
 fun NavigationSystem(
     navController: NavHostController = rememberNavController(),
+    activity: Activity
 ){
     NavHost(
         navController = navController,
@@ -20,8 +23,14 @@ fun NavigationSystem(
     ) {
         composable<HomeScreenN>{
             val viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
+            val permissionsToRequest = arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
             HomeScreen(
-                hourlyForecastUiState = viewModel.hourlyForecastUiState
+                hourlyForecastUiState = viewModel.hourlyForecastUiState,
+                permissionsToRequest = permissionsToRequest,
+                activity = activity
             )
         }
     }

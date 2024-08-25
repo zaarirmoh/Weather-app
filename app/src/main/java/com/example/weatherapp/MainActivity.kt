@@ -53,7 +53,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
-                NavigationSystem()
+                NavigationSystem(
+                    activity = this@MainActivity
+                )
             }
         }
     }
