@@ -79,6 +79,7 @@ fun NavigationSystem(
                 permissionsToRequest = permissionsToRequest,
                 activity = activity,
                 location = locationResult.value,
+                isPermissionsGranted = isPermissionGranted,
                 retryAction = {
                     viewModel.getHourlyForecast(
                         lat = locationResult.value!!.latitude,
