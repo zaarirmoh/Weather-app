@@ -12,7 +12,7 @@ interface AppContainer{
 
 class DefaultAppContainer: AppContainer{
 
-    private val baseUrl = "https://api.weatherbit.io/v2.0/"
+    private val baseUrl = "http://api.weatherbit.io/v2.0/"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))

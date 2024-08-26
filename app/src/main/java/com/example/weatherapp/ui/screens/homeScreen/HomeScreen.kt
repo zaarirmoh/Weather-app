@@ -1,12 +1,21 @@
 package com.example.weatherapp.ui.screens.homeScreen
 
 import android.app.Activity
+import android.location.Location
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -15,7 +24,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.example.weatherapp.openAppSettings
 
 @Composable
@@ -23,7 +34,9 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     hourlyForecastUiState: HourlyForecastUiState,
     permissionsToRequest: Array<String>,
-    activity: Activity
+    activity: Activity,
+    location: Location?,
+    retryAction: () -> Unit,
 ) {
     var isPermissionGranted: Boolean by remember {
         mutableStateOf(true)
@@ -41,13 +54,19 @@ fun HomeScreen(
         modifier = modifier.fillMaxSize()
     ) {
         Column(
-            modifier = modifier.padding(it)
+            modifier = modifier
+                .fillMaxSize()
+                .padding(it)
         ) {
             locationPermissionResultLauncher.launch(permissionsToRequest)
             if (isPermissionGranted){
                 when (hourlyForecastUiState) {
-                    is HourlyForecastUiState.Loading -> HomeScreenLoading()
-                    is HourlyForecastUiState.Error -> HomeScreenError()
+                    is HourlyForecastUiState.Loading -> HomeScreenLoading(
+
+                    )
+                    is HourlyForecastUiState.Error -> HomeScreenError(
+                        retryAction = retryAction
+                    )
                     is HourlyForecastUiState.Success -> HomeScreenSuccess()
                 }
             }else{
@@ -68,13 +87,40 @@ fun HomeScreen(
 }
 
 @Composable
-fun HomeScreenLoading() {
-
+fun HomeScreenLoading(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
+    }
 }
 
 @Composable
-fun HomeScreenError() {
-
+fun HomeScreenError(
+    modifier: Modifier = Modifier,
+    retryAction: () -> Unit,
+) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "There was an error connecting to the internet")
+        Spacer(modifier = modifier.height(10.dp))
+        Button(
+            onClick = retryAction,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer,
+                contentColor = MaterialTheme.colorScheme.onErrorContainer
+            )
+        ) {
+            Text(text = "Try again")
+        }
+    }
 }
 
 @Composable

@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui.screens.homeScreen
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -49,6 +50,7 @@ class HomeViewModel(
         hours: Int
     ){
       viewModelScope.launch {
+          Log.d("HomeViewModel", "getHourlyForecast: $lat, $long, $key, $hours")
           hourlyForecastUiState = HourlyForecastUiState.Loading
           hourlyForecastUiState = try {
               HourlyForecastUiState.Success(weatherRepository.getHourlyForecast(lat, long, key, hours))
