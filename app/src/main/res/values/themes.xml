@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.Starting" parent="Theme.SplashScreen" >
         <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/weather_app_icon_2_svg</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/weather_app_icon_svg</item>
     </style>
 
     <style name="Theme.WeatherApp" parent="android:Theme.Material.Light.NoActionBar">

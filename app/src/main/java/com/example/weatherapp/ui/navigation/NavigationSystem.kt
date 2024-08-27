@@ -67,15 +67,24 @@ fun NavigationSystem(
                 }
             }
             LaunchedEffect(locationResult.value == null) {
-                if (locationResult.value != null) viewModel.getHourlyForecast(
-                    lat = locationResult.value!!.latitude,
-                    long = locationResult.value!!.longitude,
-                    key = weatherbitApiKey,
-                    hours = 48
-                )
+                if (locationResult.value != null) {
+                    viewModel.getHourlyForecast(
+                        lat = locationResult.value!!.latitude,
+                        long = locationResult.value!!.longitude,
+                        key = weatherbitApiKey,
+                        hours = 24
+                    )
+                    viewModel.getDailyForecast(
+                        lat = locationResult.value!!.latitude,
+                        long = locationResult.value!!.longitude,
+                        key = weatherbitApiKey,
+                        days = 7
+                    )
+                }
             }
             HomeScreen(
                 hourlyForecastUiState = viewModel.hourlyForecastUiState,
+                dailyForecastUiState = viewModel.dailyForecastUiState,
                 permissionsToRequest = permissionsToRequest,
                 activity = activity,
                 location = locationResult.value,
@@ -85,7 +94,13 @@ fun NavigationSystem(
                         lat = locationResult.value!!.latitude,
                         long = locationResult.value!!.longitude,
                         key = weatherbitApiKey,
-                        hours = 48
+                        hours = 24
+                    )
+                    viewModel.getDailyForecast(
+                        lat = locationResult.value!!.latitude,
+                        long = locationResult.value!!.longitude,
+                        key = weatherbitApiKey,
+                        days = 7
                     )
                 }
             )
