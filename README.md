@@ -19,4 +19,4 @@ an application to get the weather using weatherbit api built with jetpack compos
 
 ## How the app looks like
 
-![App Screenshot](appScreenshot.jpg)
+![App Screenshot](appScreenshot-2.jpg)
