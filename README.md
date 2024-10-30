@@ -33,7 +33,7 @@ The **Weather App** provides accurate and up-to-date weather information for any
    - Open the project in **Android Studio**, sync dependencies, and run the app on an emulator or device.
 
 ## 📸 Screenshots
-![App Screenshot](appScreenshot-2.jpg)
+![App Screenshot](Screenshot.png)
 
 ## 🗂️ Project Structure
 - `ui/`: Jetpack Compose screens for displaying weather details.
