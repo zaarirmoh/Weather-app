@@ -9,6 +9,9 @@ The **Weather App** provides accurate and up-to-date weather information for any
 - **Hourly Forecast**: Provides a detailed hourly forecast for up to 24 hours.
 - **Modern UI**: Built with Jetpack Compose for a responsive, user-friendly design.
 
+## 📸 Screenshots
+![App Screenshot](Screenshot.png)
+
 ## 🛠️ Tech Stack
 - **Language**: Kotlin
 - **UI Framework**: Jetpack Compose
@@ -32,8 +35,6 @@ The **Weather App** provides accurate and up-to-date weather information for any
 3. **Build and Run**:
    - Open the project in **Android Studio**, sync dependencies, and run the app on an emulator or device.
 
-## 📸 Screenshots
-![App Screenshot](Screenshot.png)
 
 ## 🗂️ Project Structure
 - `ui/`: Jetpack Compose screens for displaying weather details.
